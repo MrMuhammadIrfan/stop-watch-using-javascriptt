@@ -22,6 +22,15 @@ body{
   font-style: normal;
     
 }
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .button img {
    width: 150px;
+   cursor: pointer;
+}
+.button img:nth-child(2){
+    width: 200px;
 }

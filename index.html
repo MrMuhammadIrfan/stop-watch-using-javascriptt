@@ -11,14 +11,53 @@
 </head>
 <body>
     <div class="container">
-        <h1>00:00:00</h1>
+        <h1 id="time">00:00:00</h1>
         <div class="button">
-            <img src="images/4091642-removebg-preview.png" alt="">
-            <img src="images/channels4_profile-removebg-preview.png" alt="">
-            <img src="images/images-removebg-preview.png" alt="">
+           
+            <img src="images/reset.png" onclick="resetwatch()">
+            <img src="images/start.png" onclick="startwatch()">
+            <img src="images/pause.png" onclick="pausewatch()">
 
         </div>
     </div>
+    <script>
+        let[second , minute , hour] = [0 , 0 , 0];
+        let displaytime = document.getElementById("time");
+        let timer = null;
+
+        function container(){
+            second++;
+            if(second == 60){
+                second = 0;
+                minute++;
+                if(minute == 60){
+                    minute = 0;
+                    hour++;
+                }
+            }
+            let  h = hour < 10 ? "0"+ hour : hour;
+            let  m = minute < 10 ? "0"+ minute : minute;
+            let  s = second < 10 ? "0"+ second : second;
+            displaytime.innerHTML = h +":"+ m +":"+ s;
+        }
+
+        function startwatch(){
+    if(timer != null)
+    {
+        clearInterval(timer);
+    }
+    timer = setInterval(container,1000);
+}
+function pausewatch(){
+    clearInterval(timer);
+}
+function resetwatch(){
+
+    clearInterval(timer);
+    [second , minute , hour] = [0,0,0];
+    container.innerHTML = "00:00:00";
+}
+    </script>
     
 </body>
 </html>
